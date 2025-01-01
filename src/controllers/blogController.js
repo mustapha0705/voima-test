@@ -16,10 +16,10 @@ const upload = multer({ storage: storage });
 
 const getAllBlogs = async (req, res) => {
   try {
-    page = Number(req.query.page) || 1;
-    limit = Number(req.query.limit) || 10;
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 10;
 
-    skip = (page - 1) * limit;
+    const skip = (page - 1) * limit;
 
     const blogs = await Blog.find({}).skip(skip).limit(limit).lean();
 
