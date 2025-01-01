@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3000;
 import cors from "cors";
 import helmet from "helmet";
 import xss from "xss-clean";
-import rateLimiter from "express-rate-limite";
+import rateLimiter from "express-rate-limit";
 
 const app = express();
 
