@@ -1,0 +1,34 @@
+{
+  "name": "main-website-backend",
+  "version": "1.0.0",
+  "description": "voima main website backend with express",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "try": "nodemon src/test_folder/index.js"
+  },
+  "author": "Mustapha Mohammed",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.689.0",
+    "@aws-sdk/s3-request-presigner": "^3.689.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-rate-limit": "^7.5.0",
+    "express-rate-limiter": "^1.3.1",
+    "express-validator": "^7.2.0",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.8.1",
+    "multer": "^1.4.5-lts.1",
+    "rate-limiter": "^0.2.0",
+    "xss-clean": "^0.1.4"
+  }
+}
