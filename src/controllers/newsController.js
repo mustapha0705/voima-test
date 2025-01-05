@@ -17,10 +17,10 @@ const s3BucketName = process.env.S3_BUCKET_NAME;
 
 const getAllNews = async (req, res) => {
   try {
-    page = Number(req.query.page) || 1;
-    limit = Number(req.query.limit) || 10;
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 10;
 
-    skip = (page - 1) * limit;
+    const skip = (page - 1) * limit;
 
     const news = await News.find({}).skip(skip).limit(limit).lean();
 
