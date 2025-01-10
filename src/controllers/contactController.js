@@ -1,5 +1,5 @@
+import mongoose from "mongoose";
 import { matchedData, validationResult } from "express-validator";
-
 import Contact from "../models/contactModel.js";
 
 const getMessages = async (req, res) => {
@@ -22,6 +22,11 @@ const getMessages = async (req, res) => {
 const getMessage = async (req, res) => {
   try {
     const { id: messageID } = req.params;
+
+    if (!mongoose.isValidObjectId(messageID)) {
+      return res.status(400).json({ msg: `Invalid ID format: ${messageID}` });
+    }
+
     const message = await Contact.findById(messageID);
 
     if (!message) {

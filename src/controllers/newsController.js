@@ -1,3 +1,4 @@
+import mongoose from 'mongoose'
 import News from "../models/newsModel.js";
 import {
   PutObjectCommand,
@@ -67,6 +68,11 @@ const getAllNews = async (req, res) => {
 const getSingleNews = async (req, res) => {
   try {
     const { id: newsID } = req.params;
+
+    if (!mongoose.isValidObjectId(newsID)) {
+      return res.status(400).json({ msg: `Invalid ID format: ${newsID}` });
+    }
+
     const newsItem = await News.findById(newsID).lean();
 
     if (!newsItem) {

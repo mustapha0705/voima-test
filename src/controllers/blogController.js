@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import Blog from "../models/blogModel.js";
 import {
   PutObjectCommand,
@@ -66,6 +67,11 @@ const getAllBlogs = async (req, res) => {
 const getBlog = async (req, res) => {
   try {
     const { id: blogID } = req.params;
+
+    if(!mongoose.isValidObjectId(blogID)){
+      return res.status(400).json({ msg: `Invalid ID format: ${blogID}` })
+    }
+    
     const blog = await Blog.findById(blogID).lean();
 
     if (!blog) {
