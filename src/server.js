@@ -23,6 +23,11 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+const origin = (req, res, next) => {
+  console.log("Request Origin:", req.headers.origin);
+  next();
+}
+
 app.set("trust proxy", 1);
 app.use(
   rateLimiter({
@@ -54,18 +59,18 @@ app.get("/", (req, res) => {
 });
 
 //news route
-app.use("/api/v1/news", news);
+app.use("/api/v1/news",origin, news);
 
 //blog route
-app.use("/api/v1/blog", blog);
+app.use("/api/v1/blog",origin, blog);
 
 //contact route
-app.use("/api/v1/contact", contact);
+app.use("/api/v1/contact",origin, contact);
 
 //subscription route
-app.use("/api/v1/subscribe", subscribe);
+app.use("/api/v1/subscribe",origin, subscribe);
 
-app.use("/api/v1/auth", auth);
+app.use("/api/v1/auth",origin, auth);
 
 //invalid route middleware
 app.use(routeNotFound);
