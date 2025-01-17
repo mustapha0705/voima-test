@@ -23,10 +23,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const origin = (req, res, next) => {
-  console.log("Request Origin:", req.headers.origin);
-  next();
-}
+// const origin = (req, res, next) => {
+//   console.log("Request Origin:", req.headers.origin);
+//   next();
+// };
 
 app.set("trust proxy", 1);
 app.use(
@@ -39,14 +39,12 @@ app.use(
 );
 app.use(
   cors({
-    origin: 
-    // "*"
-    [
-      "http://localhost:5173",
-      "https://voima-dev.vercel.app",
-      "https://voimainitiative.org"
-    ]
-    ,
+    origin: "*",
+    // [
+    //   "http://localhost:5173",
+    //   "https://voima-dev.vercel.app",
+    //   "https://voimainitiative.org"
+    // ]
     methods: ["GET", "POST", "PATCH", "DELETE"],
     credentials: true,
   })
@@ -60,18 +58,18 @@ app.get("/", (req, res) => {
 });
 
 //news route
-app.use("/api/v1/news",origin, news);
+app.use("/api/v1/news", news);
 
 //blog route
-app.use("/api/v1/blog",origin, blog);
+app.use("/api/v1/blog", blog);
 
 //contact route
-app.use("/api/v1/contact",origin, contact);
+app.use("/api/v1/contact", contact);
 
 //subscription route
-app.use("/api/v1/subscribe",origin, subscribe);
+app.use("/api/v1/subscribe", subscribe);
 
-app.use("/api/v1/auth",origin, auth);
+app.use("/api/v1/auth", auth);
 
 //invalid route middleware
 app.use(routeNotFound);
