@@ -34,11 +34,13 @@ app.use(
 );
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://voima-dev.vercel.app",
-      "https://voimainitiative.org",
-    ],
+    origin: "*"
+    // [
+    //   "http://localhost:5173",
+    //   "https://voima-dev.vercel.app",
+    //   "https://voimainitiative.org",
+    // ]
+    ,
     methods: ["GET", "POST", "PATCH", "DELETE"],
     credentials: true,
   })
